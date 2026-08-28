@@ -1,0 +1,11 @@
+{
+  "name": "ola-portfolio-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static, privacy preserving portfolio assistant for Ola Ayilara.",
+  "scripts": {
+    "test": "node --test tests/site.test.mjs",
+    "test:browser": "node --test tests/browser.test.mjs",
+    "build:resume": "node scripts/build_resume.js"
+  }
+}
