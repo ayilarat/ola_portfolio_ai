@@ -30,6 +30,22 @@ test("uses the approved centred layout without portfolio website links", () => {
   assert.doesNotMatch(html, />\s*(View full portfolio|www\.tunde\.me)\s*</i);
 });
 
+test("uses Ola's headshot without exposing the Debug Center footer link", () => {
+  assert.match(html, /--headshot-image: url\("data:image\/jpeg;base64,/);
+  assert.match(html, /aria-label="Portrait of Ola Ayilara"/);
+  assert.match(html, /class="assistant-headshot"/);
+  assert.match(html, /aria-label="Open site diagnostics"/);
+  assert.doesNotMatch(html, /<footer[^>]*>[\s\S]*?<button[^>]*>Debug Center<\/button>/i);
+});
+
+test("keeps the question area clean and uses a professional geometric font stack", () => {
+  assert.match(html, /font-family: "Avenir Next", Avenir, "Century Gothic"/);
+  assert.match(html, /<label for="chat-input" class="composer-label">Ask about Ola<\/label>\s*<form/);
+  assert.match(html, /id="transcript"[^>]*><\/div>/);
+  assert.doesNotMatch(html, /Ask me about Ola’s product design experience/);
+  assert.match(html, /Processed locally\. Questions are not transmitted or stored\./);
+});
+
 test("resume is a valid Office ZIP container", () => {
   assert.equal(resume.subarray(0, 2).toString("utf8"), "PK");
   assert.ok(resume.length > 5000);
@@ -68,6 +84,7 @@ test("does not contain remote data or code execution paths", () => {
 test("provides accessible interaction and recovery surfaces", () => {
   assert.match(html, /role="log"/);
   assert.match(html, /aria-live="polite"/);
+  assert.match(html, /id="composer-help"[^>]*role="status"/);
   assert.match(html, /aria-label="Conversation"/);
   assert.match(html, /prefers-reduced-motion/);
   assert.match(html, /Skip to the portfolio assistant/);
