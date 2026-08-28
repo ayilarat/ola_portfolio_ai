@@ -22,6 +22,14 @@ test("contains generic positioning without Babylist language", () => {
   assert.match(resumeSource, /B2B SaaS/);
 });
 
+test("uses the approved centred layout without portfolio website links", () => {
+  assert.doesNotMatch(html, /class="profile-panel"/);
+  assert.match(html, /class="profile-strip"/);
+  assert.match(html, /class="chat-panel"/);
+  assert.doesNotMatch(html, /href="https?:\/\/(www\.)?tunde\.me/i);
+  assert.doesNotMatch(html, />\s*(View full portfolio|www\.tunde\.me)\s*</i);
+});
+
 test("resume is a valid Office ZIP container", () => {
   assert.equal(resume.subarray(0, 2).toString("utf8"), "PK");
   assert.ok(resume.length > 5000);
@@ -40,6 +48,14 @@ test("guardrails are present and bounded", () => {
   assert.match(inlineScript, /abusePattern/);
   assert.match(html, /maxlength="280"/);
   assert.match(html, /Portfolio questions only/);
+});
+
+test("local engine supports weighted matching and conversation context", () => {
+  assert.match(inlineScript, /const knowledgeBase =/);
+  assert.match(inlineScript, /function scoreIntent/);
+  assert.match(inlineScript, /conversationState/);
+  assert.match(inlineScript, /followUpPattern/);
+  assert.match(inlineScript, /renderSuggestions/);
 });
 
 test("does not contain remote data or code execution paths", () => {
