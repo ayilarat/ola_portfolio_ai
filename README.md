@@ -8,6 +8,8 @@ The assistant uses weighted phrase matching, multi topic responses, conversation
 
 The assistant does not generate open ended content. This is intentional. A static GitHub Pages site cannot protect an AI API secret, and grounded local answers prevent fabricated career claims while keeping visitor questions private.
 
+The visual system uses a local geometric sans font stack led by Avenir Next, with compatible fallbacks. No remote font request is made, preserving privacy and fast rendering.
+
 ## Files
 
 1. `index.html` contains the complete website, design system, content, interaction logic, guardrails, and Debug Center.
@@ -15,6 +17,7 @@ The assistant does not generate open ended content. This is intentional. A stati
 3. `scripts/build_resume.js` generates the resume from verified source content.
 4. `tests/site.test.mjs` verifies critical content, security, accessibility, and guardrail requirements.
 5. `tests/browser.test.mjs` verifies real browser interaction and responsive behavior at 1440, 1024, 768, and 390 pixel widths.
+6. The optimized square headshot is embedded in `index.html` so it renders immediately without a separate network request.
 
 ## Local setup
 
@@ -78,7 +81,7 @@ The Debug Center is available from the page footer. It shows timestamped system,
 
 ## Accessibility
 
-The interface targets WCAG 2.2 AA. It includes semantic landmarks, keyboard operation, visible focus states, a skip link, labelled controls, status announcements, reduced motion support, minimum touch target sizing, and clear error recovery.
+The interface targets WCAG 2.2 AA. It includes semantic landmarks, keyboard operation, visible focus states, a skip link that transfers focus to the question field, labelled controls, live status announcements, decorative image handling, meaningful image text alternatives, reduced motion support, minimum 44 pixel touch targets, and clear error recovery. Diagnostics remain available through the accessible settings control in the header without exposing a footer link.
 
 ## Performance
 
