@@ -1,12 +1,12 @@
 # Ola Ayilara Portfolio Assistant
 
-A single page conversational portfolio that answers curated questions about Ola Ayilara's product design experience. It is designed for GitHub Pages and uses no backend, external AI API, database, or tracking service.
+A responsive conversational portfolio that answers grounded questions about Ola Ayilara's product design experience. It is designed for GitHub Pages and uses no backend, external AI API, database, or tracking service.
 
 ## Product scope
 
-The assistant answers questions about target roles, AI product work, measurable outcomes, skills, process, collaboration, accessibility, leadership, tools, contact information, and the downloadable resume.
+The assistant uses weighted phrase matching, multi topic responses, conversation context, follow up awareness, and dynamic suggested questions. It covers target roles, AI product work, measurable outcomes, skills, process, collaboration, accessibility, leadership, tools, public service, fintech, research, design systems, contact information, and the downloadable resume.
 
-The assistant does not generate open ended content. This is intentional. A static GitHub Pages site cannot protect an AI API secret, and deterministic answers prevent fabricated career claims.
+The assistant does not generate open ended content. This is intentional. A static GitHub Pages site cannot protect an AI API secret, and grounded local answers prevent fabricated career claims while keeping visitor questions private.
 
 ## Files
 
@@ -14,6 +14,7 @@ The assistant does not generate open ended content. This is intentional. A stati
 2. `Ola_Ayilara_Resume_Generic.docx` is the downloadable generic resume.
 3. `scripts/build_resume.js` generates the resume from verified source content.
 4. `tests/site.test.mjs` verifies critical content, security, accessibility, and guardrail requirements.
+5. `tests/browser.test.mjs` verifies real browser interaction and responsive behavior at 1440, 1024, 768, and 390 pixel widths.
 
 ## Local setup
 
@@ -39,7 +40,7 @@ The test suite uses only Node.js built in modules.
 
 ## Updating content
 
-Portfolio answers are centralized in the `responses` object inside `index.html`. Suggested questions are grouped in the `suggestions` section. Resume content is centralized in `scripts/build_resume.js`.
+Portfolio answers, keywords, phrases, detailed follow ups, and related prompts are centralized in the `knowledgeBase` object inside `index.html`. Resume content is centralized in `scripts/build_resume.js`.
 
 After changing resume content, run:
 
